@@ -28,7 +28,7 @@ public class Movie extends BaseEntity {
     private MovieState state;
     private BigDecimal price;
     @ManyToMany
-    @JoinTable(name = "movie genre rel",//Modifying the table which is created by the Spring
+    @JoinTable(name = "movie_genre_rel",//Modifying the table which is created by the Spring
     joinColumns = @JoinColumn (name = "movie_id"),//Modifying the column which is created by the Spring
     inverseJoinColumns = @JoinColumn (name = "genre_id"))//Modifying the other side of PK-column created by the Spring
     private List<Genre> genreList; //If it's @ManyToMany rel then we need to add list to it

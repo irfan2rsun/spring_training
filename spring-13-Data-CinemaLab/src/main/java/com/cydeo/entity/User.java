@@ -2,11 +2,13 @@ package com.cydeo.entity;
 
 import javax.persistence.*;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Table(name = "user_account")//Modifying tables' name
 public class User extends BaseEntity {
@@ -19,5 +21,12 @@ public class User extends BaseEntity {
     @JoinColumn(name = "account_details_id")
     private Account account;
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }
