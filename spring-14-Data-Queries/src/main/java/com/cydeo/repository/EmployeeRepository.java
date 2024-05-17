@@ -6,6 +6,7 @@ package com.cydeo.repository;//Query in repository is always SQL query
 import com.cydeo.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -96,7 +97,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {//
 
     //Native Query: when dealing with completed query just want to take it and use it
     //Method name doesn't matter in JPQL and Native Query but in Derived Query
-    @Query(value = "SELECT * FROM employees WHERE salary = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM employees WHERE salary = ?1", nativeQuery = true)//Positional Parameter [?1]
     List<Employee> retrieveEmployeeDetailBySalary(int salary);
+
+    //Named Parameter [:salary]
+    @Query("SELECT e FROM Employee e WHERE e.salary = :salary")
+    List<Employee> retrieveEmployeeSalary(@Param("salary") int salary); //@Do the Parameterization with @Param and the name
 
 }
